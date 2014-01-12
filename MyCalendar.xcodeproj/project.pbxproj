@@ -14,7 +14,6 @@
 		708D430F188166BC0082E2F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 708D430E188166BC0082E2F0 /* main.m */; };
 		708D4313188166BC0082E2F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 708D4312188166BC0082E2F0 /* AppDelegate.m */; };
 		708D4316188166BC0082E2F0 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708D4314188166BC0082E2F0 /* Main_iPhone.storyboard */; };
-		708D4319188166BC0082E2F0 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708D4317188166BC0082E2F0 /* Main_iPad.storyboard */; };
 		708D431C188166BC0082E2F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 708D431B188166BC0082E2F0 /* ViewController.m */; };
 		708D431E188166BC0082E2F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 708D431D188166BC0082E2F0 /* Images.xcassets */; };
 		708D4325188166BC0082E2F0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708D4324188166BC0082E2F0 /* XCTest.framework */; };
@@ -22,6 +21,7 @@
 		708D4327188166BC0082E2F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708D4306188166BC0082E2F0 /* UIKit.framework */; };
 		708D432F188166BC0082E2F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 708D432D188166BC0082E2F0 /* InfoPlist.strings */; };
 		708D4331188166BC0082E2F0 /* MyCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 708D4330188166BC0082E2F0 /* MyCalendarTests.m */; };
+		708E08491882CCE50057E1C5 /* footBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E08481882CCE50057E1C5 /* footBall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		708D4311188166BC0082E2F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		708D4312188166BC0082E2F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		708D4315188166BC0082E2F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		708D4318188166BC0082E2F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		708D431A188166BC0082E2F0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		708D431B188166BC0082E2F0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		708D431D188166BC0082E2F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		708D432C188166BC0082E2F0 /* MyCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		708D432E188166BC0082E2F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		708D4330188166BC0082E2F0 /* MyCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCalendarTests.m; sourceTree = "<group>"; };
+		708E08481882CCE50057E1C5 /* footBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = footBall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +114,10 @@
 		708D4308188166BC0082E2F0 /* MyCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				708E08481882CCE50057E1C5 /* footBall.png */,
 				708D4311188166BC0082E2F0 /* AppDelegate.h */,
 				708D4312188166BC0082E2F0 /* AppDelegate.m */,
 				708D4314188166BC0082E2F0 /* Main_iPhone.storyboard */,
-				708D4317188166BC0082E2F0 /* Main_iPad.storyboard */,
 				708D431A188166BC0082E2F0 /* ViewController.h */,
 				708D431B188166BC0082E2F0 /* ViewController.m */,
 				708D431D188166BC0082E2F0 /* Images.xcassets */,
@@ -231,9 +231,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				708D4319188166BC0082E2F0 /* Main_iPad.storyboard in Resources */,
 				708D431E188166BC0082E2F0 /* Images.xcassets in Resources */,
 				708D4316188166BC0082E2F0 /* Main_iPhone.storyboard in Resources */,
+				708E08491882CCE50057E1C5 /* footBall.png in Resources */,
 				708D430D188166BC0082E2F0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,14 +292,6 @@
 				708D4315188166BC0082E2F0 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		708D4317188166BC0082E2F0 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				708D4318188166BC0082E2F0 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		708D432D188166BC0082E2F0 /* InfoPlist.strings */ = {
@@ -474,6 +466,7 @@
 				708D4336188166BC0082E2F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		708D4337188166BC0082E2F0 /* Build configuration list for PBXNativeTarget "MyCalendarTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +475,7 @@
 				708D4339188166BC0082E2F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

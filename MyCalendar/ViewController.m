@@ -8,11 +8,29 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UICollectionViewDataSource>
 
 @end
 
 @implementation ViewController
+- (IBAction)clickedButton:(id)sender {
+    UIButton *tmp = [UIButton alloc];
+    tmp = sender;
+    NSLog(@"Button clicked!");
+    NSLog(@"day is %@",[tmp.superview.subviews[1] text ]);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DAY_CELL" forIndexPath:indexPath];
+    UILabel *dayLabel = (UILabel *)[cell viewWithTag:1];
+    dayLabel.text = [NSString stringWithFormat:@"%d",(int)indexPath.row+1];
+    
+    return cell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 31;
+}
 
 - (void)viewDidLoad
 {
