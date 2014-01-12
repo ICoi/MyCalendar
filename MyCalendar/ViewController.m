@@ -20,13 +20,20 @@
 @implementation ViewController
 
 // 달력의 요일에 맞추어 세팅하는 함수
-- (void)setCalendarYear:(NSInteger)inYear Month:(NSInteger)inMonth{
-    // 2000년 1월 1일
-    // 2010년 1월 1일
-    // 2020년 1월 1일
-    // 2030년 1월 1일
-    // 2040년 1월 1일
+// 해당 년 월의 1일의 요일 값을 리턴한다.
+- (NSInteger)setCalendarYear:(NSInteger)inYear Month:(NSInteger)inMonth{
+    // 2000년 1월 1일 토요일 (6)
+    // 2012년 1월 1일 일요일 (0)
+    // 2024년 1월 1일 월요일 (1)
+    // 2036년 1월 1일 화요일 (2)
     // 이정도는 미리 잡아놓고 계산 하는 편이 더 나을듯..
+    
+    // 윤년을 제외하고전 전 년도보다 하루 늦춰짐
+    // 윤년에는 2일 늦춰짐..
+    
+    // TODO 여기부분 마저 채우기..
+    
+    return 0;
 }
 
 // 해당 숫자에 맞는 요일을 리턴해주는 함수
@@ -103,6 +110,9 @@
     }
     else{
         // 날자를 적을 부분.
+        
+        
+        // TODO setCalendarYear 이거 함수이용해서 해야함!!
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DATE_CELL" forIndexPath:indexPath];
         UILabel *dateLabel = (UILabel *)[cell viewWithTag:2];
         dateLabel.text = [NSString stringWithFormat:@"%d",(int)indexPath.row-6];
