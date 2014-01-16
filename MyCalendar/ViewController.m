@@ -73,11 +73,42 @@
     NSString *tmpString = [NSString stringWithFormat:@"%d년 %d월",(int)inYear,(int)inMonth];
     self.yearAndMonthButtonLabel.title = tmpString;
 }
+
+
+// 요일을 리턴해주는 함수
+// 0 : 일요일 1 : 월요일 2 : 화요일 3: 수요일 4:목요일 5:금요일 6 :토요일
+- (NSInteger)calculateDayWithYear:(NSInteger)inYear withMonth:(NSInteger)inMonth withDate:(NSInteger)inDate{
+    if (inMonth <= 2){
+        --inYear;
+        inMonth += 12;
+    }
+
+    NSInteger resultDay = ( (21*((int)inYear/100)/4) + (5*((int)inYear%100)/4) + (26*((int)inMonth+1)/10) + (int)inDate - 1 ) % 7;
+    return resultDay;
+}
+/*
+ int GetDayOfTheWeek(int year, int month, int date)
+ {
+ if ( month <= 2 )
+ {
+ --year;
+ month += 12;
+ }
+ return ( (21*(year/100)/4) + (5*(year%100)/4) + (26*(month+1)/10) + date - 1 ) % 7;
+ }
+ */
 // 달력 내부에 요일부분 버튼 누른경우
 - (IBAction)clickedButton:(id)sender {
     UIButton *tmp = [UIButton alloc];
     tmp = sender;
-    NSLog(@"day is %@",[tmp.superview.subviews[1] text]);
+    NSString *tmpString = [NSString alloc];
+    tmpString = [tmp.superview.subviews[1] text];
+    NSInteger clickedDate = [tmpString integerValue];
+    NSInteger result = [self calculateDayWithYear:year withMonth:month withDate:clickedDate];
+    
+    
+    NSLog(@"day is %@",tmpString);
+    NSLog(@"%d - %d - %d result : %d",year,month,clickedDate,result);
 }
 
 // 이전 달로 이동하는 버튼 누른 경우
@@ -134,8 +165,12 @@
     [self setYear:year setMonth:month];
     
     
+    // 여기는 요일 구하는거 테스트 하려고 한 거
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
 
 - (void)didReceiveMemoryWarning
 {
