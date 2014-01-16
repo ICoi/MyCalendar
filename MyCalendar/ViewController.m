@@ -11,8 +11,10 @@
 @interface ViewController () <UICollectionViewDataSource>{
     NSInteger year;
     NSInteger month;
+    NSInteger startDate;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *yearAndMonthButtonLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *collection;
 
 
 @end
@@ -71,6 +73,13 @@
 // bar에 년도와 요일 표시하는 부분의 글씨 편집하는 함수.
 - (void)setYear:(NSInteger)inYear setMonth:(NSInteger)inMonth{
     NSString *tmpString = [NSString stringWithFormat:@"%d년 %d월",(int)inYear,(int)inMonth];
+    
+    
+    // 새로 1일의 시작 날자 설정
+    startDate = [self calculateDayWithYear:year withMonth:month withDate:1];
+  //  startDate++;
+    startDate %= 7;
+    NSLog(@"%d - %d - %d ",year,month,startDate);
     self.yearAndMonthButtonLabel.title = tmpString;
 }
 
@@ -108,7 +117,6 @@
     
     
     NSLog(@"day is %@",tmpString);
-    NSLog(@"%d - %d - %d result : %d",year,month,clickedDate,result);
 }
 
 // 이전 달로 이동하는 버튼 누른 경우
@@ -118,7 +126,10 @@
         year--;
         month = 12;
     }
+    
+    
     [self setYear:year setMonth:month];
+    [self.collection reloadData];
 }
 
 // 이 다음 달로 이동하는 버튼 누른 경우
@@ -129,6 +140,7 @@
         month = 1;
     }
     [self setYear:year setMonth:month];
+    [self.collection reloadData];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -142,18 +154,61 @@
     else{
         // 날자를 적을 부분.
         
+        NSInteger writeDate = indexPath.row - 6 - startDate;
+        NSString *writeDateStr = [NSString alloc];
         
         // TODO setCalendarYear 이거 함수이용해서 해야함!!
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DATE_CELL" forIndexPath:indexPath];
         UILabel *dateLabel = (UILabel *)[cell viewWithTag:2];
-        dateLabel.text = [NSString stringWithFormat:@"%d",(int)indexPath.row-6];
+        
+        // 일단 달력 윗줄에 빈공간 계산하기
+        if((writeDate <= 0) || (writeDate > 31)){
+            // 여기는 빈공간
+            writeDateStr = @" ";
+        }
+        else if(writeDate == 31){
+            if((month == 2) || (month == 4) || (month == 6 ) || (month == 9) || (month == 11)){
+                writeDateStr = @" ";
+            }
+            else{
+                writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+            }
+        }
+        else if(writeDate == 30){
+            if(month == 2){
+                writeDateStr = @" ";
+            }
+            else {
+                writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+            }
+        }
+        else if(writeDate  == 29)
+        {
+            // 여기는 채워질 부분
+            if( (month != 2) || (((year % 4) == 0) && ((year & 100) != 0))){
+                writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+            }
+            else{
+                writeDateStr = @" ";
+            }
+        }
+        else{
+            writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+        }
+        
+        // 달력 아랫줄 끝나는 공간 계산하기
+        // 2월달의경우 -> 윤년이 아니면 28일까지 윤년이면 29일까지
+        // 1 3 5 7 8 10 12월은 31일까지
+        // 4 6 9 11월은 30일까지 존재함.
+        
+        dateLabel.text = writeDateStr;
         return  cell;
     }
     return nil;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 42;
+    return 49;
 }
 
 - (void)viewDidLoad

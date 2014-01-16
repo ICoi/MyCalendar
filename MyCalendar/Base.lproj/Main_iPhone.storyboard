@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wxe-b6-LK7">
-                                <rect key="frame" x="0.0" y="64" width="320" height="362"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.95681435984245411" green="1" blue="0.83159903137152535" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="7" minimumInteritemSpacing="0.0" id="NK9-KE-nEQ">
@@ -106,6 +106,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="collection" destination="Wxe-b6-LK7" id="Jas-zC-N8Y"/>
                         <outlet property="yearAndMonthButtonLabel" destination="Of4-Hc-0Qk" id="LPa-Ey-sOW"/>
                     </connections>
                 </viewController>
