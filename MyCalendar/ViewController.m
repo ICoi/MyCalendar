@@ -21,22 +21,6 @@
 
 @implementation ViewController
 
-// 달력의 요일에 맞추어 세팅하는 함수
-// 해당 년 월의 1일의 요일 값을 리턴한다.
-- (NSInteger)setCalendarYear:(NSInteger)inYear Month:(NSInteger)inMonth{
-    // 2000년 1월 1일 토요일 (6)
-    // 2012년 1월 1일 일요일 (0)
-    // 2024년 1월 1일 월요일 (1)
-    // 2036년 1월 1일 화요일 (2)
-    // 이정도는 미리 잡아놓고 계산 하는 편이 더 나을듯..
-    
-    // 윤년을 제외하고전 전 년도보다 하루 늦춰짐
-    // 윤년에는 2일 늦춰짐..
-    
-    // TODO 여기부분 마저 채우기..
-    
-    return 0;
-}
 
 // 해당 숫자에 맞는 요일을 리턴해주는 함수
 // 0 : 일요일 1: 월요일 2: 화요일 3: 수요일 4: 목요일 5: 금요일 6: 토요일
@@ -95,17 +79,8 @@
     NSInteger resultDay = ( (21*((int)inYear/100)/4) + (5*((int)inYear%100)/4) + (26*((int)inMonth+1)/10) + (int)inDate - 1 ) % 7;
     return resultDay;
 }
-/*
- int GetDayOfTheWeek(int year, int month, int date)
- {
- if ( month <= 2 )
- {
- --year;
- month += 12;
- }
- return ( (21*(year/100)/4) + (5*(year%100)/4) + (26*(month+1)/10) + date - 1 ) % 7;
- }
- */
+
+
 // 달력 내부에 요일부분 버튼 누른경우
 - (IBAction)clickedButton:(id)sender {
     UIButton *tmp = [UIButton alloc];
@@ -152,7 +127,6 @@
         return cell;
     }
     else{
-        // 날자를 적을 부분.
         
         NSInteger writeDate = indexPath.row - 6 - startDate;
         NSString *writeDateStr = [NSString alloc];
@@ -166,12 +140,13 @@
             // 여기는 빈공간
             writeDateStr = @" ";
         }
+        /*
         else if(writeDate == 31){
             if((month == 2) || (month == 4) || (month == 6 ) || (month == 9) || (month == 11)){
                 writeDateStr = @" ";
             }
             else{
-                writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+                writeDateStr = [NSString stringWithFormat:@"%d",(int)writeDate];
             }
         }
         else if(writeDate == 30){
@@ -179,21 +154,22 @@
                 writeDateStr = @" ";
             }
             else {
-                writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+                writeDateStr = [NSString stringWithFormat:@"%d",(int)writeDate];
             }
         }
         else if(writeDate  == 29)
         {
             // 여기는 채워질 부분
-            if( (month != 2) || (((year % 4) == 0) && ((year & 100) != 0))){
-                writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+            if( (month != 2) || (((year % 4) == 0) && ((year % 100) != 0))){
+                writeDateStr = [NSString stringWithFormat:@"%d",(int)writeDate];
             }
             else{
                 writeDateStr = @" ";
             }
         }
+         */
         else{
-            writeDateStr = [NSString stringWithFormat:@"%d",writeDate];
+            writeDateStr = [NSString stringWithFormat:@"%d",(int)writeDate];
         }
         
         // 달력 아랫줄 끝나는 공간 계산하기
@@ -208,7 +184,21 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 49;
+    if((month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12 )){
+        return 7 + startDate + 31;
+    }
+    else if(month == 2){
+        if(((year % 4) == 0) && ((year % 100 ) != 0) ){
+            return 7 + startDate + 29;
+        }
+        else{
+            return 7 + startDate + 28;
+        }
+    }
+    else {
+        return 7 + startDate + 30;
+    }
+    return 0;
 }
 
 - (void)viewDidLoad
@@ -218,11 +208,6 @@
     year = 2013;
     month = 1;
     [self setYear:year setMonth:month];
-    
-    
-    // 여기는 요일 구하는거 테스트 하려고 한 거
-    
-    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
